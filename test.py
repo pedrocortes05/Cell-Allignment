@@ -31,7 +31,7 @@ class ImageProcessorApp(QWidget):
         self.output_scroll_area = QScrollArea(self)
         self.output_scroll_area.setWidgetResizable(True)
         self.output_content = QWidget()
-        self.output_layout = QHBoxLayout(self.output_content)
+        self.output_layout = QGridLayout(self.output_content)
         self.output_scroll_area.setWidget(self.output_content)
         layout.addWidget(self.output_scroll_area)
 
@@ -86,20 +86,25 @@ class ImageProcessorApp(QWidget):
 
         self.output_pixmaps = image_processing(self.selected_images)  # Process images
 
+        num_columns = min(3, len(self.output_pixmaps))
+
         for idx, pixmap in enumerate(self.output_pixmaps):
-            hbox = QHBoxLayout()
+            col = idx % 3
 
-            # Display image
+            # Display image in the first row
             label = QLabel(self)
-            label.setPixmap(pixmap)
-            hbox.addWidget(label)
+            label.setPixmap(pixmap.scaled(
+                self.output_scroll_area.width() // 3, 
+                self.output_scroll_area.width() // 3, 
+                Qt.AspectRatioMode.KeepAspectRatio, 
+                Qt.TransformationMode.SmoothTransformation
+            ))
+            self.output_layout.addWidget(label, 0, col)  # First row
 
-            # Save button
+            # Save button in the second row
             save_button = QPushButton("Save Image")
             save_button.clicked.connect(lambda checked, index=idx: self.save_image(index))
-            hbox.addWidget(save_button)
-
-            self.output_layout.addLayout(hbox)
+            self.output_layout.addWidget(save_button, 1, col)  # Second row
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
