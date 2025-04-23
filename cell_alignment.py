@@ -25,10 +25,9 @@ def image_processing(image_paths):
 
     #### output parameters ####
     plot_overlay = True
-    plot_angles = True
-    plot_eccentricity = True
-    save_figures = False
-    data_save_path = 'output_data/'
+    plot_angles = False
+    plot_eccentricity = False
+    save_figures = True
 
     output_images = []
 
@@ -79,10 +78,14 @@ def image_processing(image_paths):
         qimg = ImageQt.toqpixmap(img)   # Convert PIL image to QPixmap
         return qimg
 
+    img = Image.open("overlay_frame.tif")
+    overlay_frame = ImageQt.toqpixmap(img)   # Convert PIL image to QPixmap
+
     output_pixmaps = []
     output_pixmaps.append(render_plot_to_pixmap(polar_plot1))
     output_pixmaps.append(render_plot_to_pixmap(polar_plot2))
     output_pixmaps.append(render_plot_to_pixmap(polar_plot3))
+    output_pixmaps.append(overlay_frame)
 
     return output_pixmaps
 

@@ -227,7 +227,7 @@ def image_local_order(imstack, window_size = 33, overlap = 0.5, im_mask = None, 
             plt.title('Overlay')
             # plt.show()
             if save_figures:
-                plt.savefig(save_path + 'overlay_frame_%03d.tif' % (frame), format='png', dpi=300)
+                plt.savefig(save_path + 'overlay_frame.tif', format='png', dpi=300)
 
         theta_stack.append(im_theta)
         ecc_stack.append(im_ecc)

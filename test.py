@@ -89,14 +89,14 @@ class ImageProcessorApp(QWidget):
         num_columns = min(3, len(self.output_pixmaps))
 
         for idx, pixmap in enumerate(self.output_pixmaps):
-            col = idx % 3
+            col = idx % len(self.output_pixmaps)
 
             # Display image in the first row
             label = QLabel(self)
             label.setPixmap(pixmap.scaled(
-                self.output_scroll_area.width() // 3, 
-                self.output_scroll_area.width() // 3, 
-                Qt.AspectRatioMode.KeepAspectRatio, 
+                self.output_scroll_area.width() // 3,
+                self.output_scroll_area.width() // 3,
+                Qt.AspectRatioMode.KeepAspectRatio,
                 Qt.TransformationMode.SmoothTransformation
             ))
             self.output_layout.addWidget(label, 0, col)  # First row
