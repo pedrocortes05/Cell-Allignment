@@ -80,6 +80,7 @@ def image_processing(image_paths):
 
     img = Image.open("overlay_frame.tif")
     overlay_frame = ImageQt.toqpixmap(img)   # Convert PIL image to QPixmap
+    os.remove("overlay_frame.tif")
 
     output_pixmaps = []
     output_pixmaps.append(render_plot_to_pixmap(polar_plot1))
