@@ -16,8 +16,6 @@ pillow==11.1.0
 pyinstaller==6.11.1
 pyinstaller-hooks-contrib==2025.0
 pyparsing==3.2.1
-PyQt5-Qt5==5.15.16
-PyQt5_sip==12.16.1
 PyQt6==6.8.0
 PyQt6-Qt6==6.8.1
 PyQt6_sip==13.9.1
