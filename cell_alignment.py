@@ -40,6 +40,8 @@ def image_processing(image_paths):
 
     for i, path in enumerate(image_paths[:N]):  # Process only the first 3 images
         imag = sio.imread(path)
+        if imag.shape[-1] == 4:
+            imag = imag[..., :3]  # Keep only RGB
         imag = rgb2gray(imag)
 
         rot = rotate_image(image = imag, 
